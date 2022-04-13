@@ -1,0 +1,149 @@
+*{
+padding:0;
+margin:0;
+box-sizing: border-box;
+}
+
+body{
+
+    background: #252833;
+    font-family: 'Roboto', sans-serif;
+    color:#B8B8B8;
+    display: flex;
+    justify-content: center;
+}
+
+p,label,h2{
+    font-size: 14px;
+    font-weight: 300;
+}
+
+input[type=number],
+input[type=text]
+{
+    height: 35px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    width: 100%;
+    font-weight: 400;
+    font-family: 'Roboto', sans-serif;
+    padding: 0 15px;
+    color:#474747;
+    border-radius: 3px;
+    border:none;
+}
+
+.green{
+    color:#69FF66
+}
+
+.red{
+    color:red;
+}
+
+.line-green{
+    border: solid #69FF66 1px !important;
+}
+
+.line-red
+{
+    border: solid red 1px !important;
+}
+#daily-budget,
+#cpmpa
+{
+   background-image: url("../img/dollar.png");
+    background-repeat: no-repeat;
+    background-size: 11.5px;
+    background-position: 2%;
+    background-blend-mode:darken;
+
+}
+
+h1{
+    font-weight: 200;
+    font-size: 24px;
+    margin-bottom: 1em;
+}
+
+#btn-main{
+    margin: 0 auto;
+    text-align: center;
+    display: block;
+    padding: 10px 35px;
+    background: #2A65FF;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    transition: all 0.5s ease-out;;
+}
+
+#btn-main:hover{
+    cursor: pointer;
+    background: #1d49b9;
+}
+
+.results{
+    border:solid #B8B8B8 1px;
+    width:100%;
+    max-width: 250px;
+    padding: 2em;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: ;
+}
+
+.result{
+    font-size: 27px;
+}
+
+.container{
+    width:100%;
+    max-width: 1200px;
+
+    height: auto;
+}
+
+.user-data{
+    width: 100%;
+    max-width: 230px;
+}
+
+.user-data label{
+    margin-bottom: 10px;
+}
+
+.hero{
+    padding: 3em;
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.calculator{
+    background: #33353F;
+    padding:2em;
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.calculator-container{
+    width: 100%;
+}
+
+.form{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 2em;
+}

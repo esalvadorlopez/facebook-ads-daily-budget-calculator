@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/main.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+
+   
+    <section class="hero">
+        <h1>DAILY BUDGET CALCULATOR
+            FOR FACEBOOK ADS CAMPAIGNS</h1>
+            <h2>
+                How much do you need to invest daily to reach enough people for your campaigns to learn? Let´s see..
+            </h2>
+    </section>
+    <section class="calculator">
+        <div class="calculator-container">
+
+      
+
+        <div class="form">
+
+            <div class="user-data">
+                <label for="daily-budget">What is your Daily Budget?</label>
+                <br>
+                <input type="number" id="daily-budget" value="100">
+                <br>
+                <label for="cpmpa">What is you Cost per 1,000 people reached?</label>
+                <br>
+                <input type="number" id="cpmpa" value="9">
+                <br>
+                <label for="reach">Whats is your Potential Reach?</label>
+                <br>
+                <input type="text" id="reach" onkeypress="mascara(this,cpf)" value="1,000,000">
+                <br>
+                <label for="days">Learning Days</label>
+                <br>
+                <input type="number" id="days" value="30">
+            </div>
+
+            <div class="results" id="results">
+                <p>Daily Reach</p>
+                <p id="daily-reach" class="result">0</p>
+                <br>
+                <p>Avg. Reach</p>
+                <p id="avg-reach" class="result">0</p>
+                <br>
+                <p>Factor</p>
+                <p id="reach-factor" class="result">0</p>
+                <br>
+                <p>% Reach</p>
+                <p  id="%-reach" class="result">0</p>
+            </div>
+
+        </div>
+
+
+        <input type="button" id="btn-main" value="GET RESULT" onclick="getResults(event)">
+    </div>
+
+    </section>
+
+
+    <script>
+
+
+
+
+function mascara(o,f){  
+		v_obj=o;  
+		v_fun=f;  
+		setTimeout("execmascara()",1);  
+	}  
+	function execmascara(){   
+		v_obj.value=v_fun(v_obj.value);
+	}  
+	function cpf(v){     
+		v=v.replace(/([^0-9\.]+)/g,''); 
+		v=v.replace(/^[\.]/,''); 
+		v=v.replace(/[\.][\.]/g,''); 
+		v=v.replace(/\.(\d)(\d)(\d)/g,'.$1$2'); 
+		v=v.replace(/\.(\d{1,2})\./g,'.$1'); 
+		v = v.toString().split('').reverse().join('').replace(/(\d{3})/g,'$1,');    
+		v = v.split('').reverse().join('').replace(/^[\,]/,''); 
+		return v;  
+	}  
+
+        let button = document.getElementById("btn-main");
+
+        // button.addEventListener("click", getResult(event))
+        let factor = document.getElementById("reach-factor");
+        let results = document.getElementById("results")
+
+        document.addEventListener("keyup", getResults)
+        
+        function getResults(event){
+
+        // Number 13 is the "Enter" key on the keyboard
+            if (event.keyCode === 13) {
+            event.preventDefault();
+            document.getElementById("btn-main").click();
+        
+        }
+           
+            let a = document.getElementById("daily-budget").value
+            let b = document.getElementById("cpmpa").value
+            let c = parseInt(document.getElementById("reach").value.replaceAll(",",""))
+            let d = document.getElementById("days").value
+
+            let dailyReach = parseInt((a * 1000) / b)
+            document.getElementById("daily-reach").innerHTML = new Intl.NumberFormat().format(dailyReach)
+
+            let avgReach = parseInt(dailyReach * d)
+            document.getElementById("avg-reach").innerHTML = new Intl.NumberFormat().format(avgReach)
+
+            let reachFactor = parseInt(c / avgReach)
+            if(reachFactor <= 11){
+                if(factor.classList.contains("red")){
+                    factor.classList.remove("red")
+                    results.classList.remove("line-red")   
+                }
+                factor.classList.add("green")
+                results.classList.add("line-green")
+                document.getElementById("reach-factor").innerHTML = reachFactor + " / Good"
+                
+            }else{
+                if(factor.classList.contains("green")){
+                    factor.classList.remove("green")
+                    results.classList.remove("line-green")
+                }
+                document.getElementById("results").classList.add("line-red")
+                factor.classList.add("red")
+                document.getElementById("reach-factor").innerHTML = reachFactor + " / Bad"
+               
+            }
+
+            let percentageReach = Math.floor((avgReach / c) * 100)
+            document.getElementById("%-reach").innerHTML = percentageReach + " %"
+            
+        }
+    </script>
+</div>
+</body>
+
+</html>
